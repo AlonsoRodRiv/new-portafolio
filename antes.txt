@@ -1,0 +1,576 @@
+<template>
+  <div class="flex flex-col min-h-screen">
+    <header class="bg-gray-900 text-white py-4 px-6 md:px-8 fixed top-0 left-0 right-0 z-50">
+      <div class="container mx-auto flex justify-between items-center">
+        <h1 class="text-2xl font-bold">Jonh Rodriguez</h1>
+        <nav
+          :class="[
+            'md:flex md:space-x-4 md:items-center',
+            {
+              hidden: !isMenuOpen,
+              'absolute top-full left-0 right-0 bg-gray-900 p-4': isMenuOpen,
+            },
+            'md:relative md:bg-transparent md:p-0',
+          ]"
+        >
+          <a href="#frontend" class="block py-2 text-gray-400 hover:text-white md:inline-block md:py-0"> Front-end </a>
+          <a href="#backend" class="block py-2 text-gray-400 hover:text-white md:inline-block md:py-0"> Back-end </a>
+          <a href="#about" class="block py-2 text-gray-400 hover:text-white md:inline-block md:py-0"> Sobre Mi </a>
+        </nav>
+        <button
+          style="background: center"
+          @click="toggleMenu"
+          class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3 md:hidden"
+        >
+          <svg
+            v-if="!isMenuOpen"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="h-5 w-5"
+            style="color: aliceblue"
+          >
+            <line x1="4" x2="20" y1="12" y2="12"></line>
+            <line x1="4" x2="20" y1="6" y2="6"></line>
+            <line x1="4" x2="20" y1="18" y2="18"></line>
+          </svg>
+          <svg
+            v-else
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="h-5 w-5"
+            style="color: aliceblue"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+          <span class="sr-only">{{ isMenuOpen ? 'Close menu' : 'Open menu' }}</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="h-16"></div>
+    <hr />
+    <main class="flex-1 py-8 px-6 md:px-8">
+      <section id="frontend" class="mb-12">
+        <h2 class="text-2xl font-bold mb-4">Front-end Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+            <div class="flex flex-col space-y-1.5 p-6">
+              <img src="../assets/frontend_foro.png" alt="Project 1" class="rounded-t-md" style="aspect-ratio: 400 / 225; object-fit: cover" />
+            </div>
+            <div class="p-4">
+              <h3 class="text-xl font-bold mb-2">Forum Challenge Alura</h3>
+              <p class="text-gray-600 mb-4">Crea topicos de direfentes cursos y respondes a los topicos de otros usuarios</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  Vue.js
+                </div>
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  TypeScript
+                </div>
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  Tailwind CSS
+                </div>
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  Vuex
+                </div>
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  Css
+                </div>
+              </div>
+              <div class="flex justify-end">
+                <a
+                  class="inline-flex items-center justify-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50"
+                  href="https://forumcourses.netlify.app"
+                >
+                  Ver Projecto
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+            <div class="flex flex-col space-y-1.5 p-6">
+              <img src="../assets/frontend_clinic.png" alt="Project 2" class="rounded-t-md" style="aspect-ratio: 400 / 225; object-fit: cover" />
+            </div>
+            <div class="p-4">
+              <h3 class="text-xl font-bold mb-2">Voll Clinic Challenge Alura</h3>
+              <p class="text-gray-600 mb-4">Es un administrador de consultas y pacientes y Medicos</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  Vue.js
+                </div>
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  TypeScript
+                </div>
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  Vuex
+                </div>
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  CSS
+                </div>
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  Tailwind CSS
+                </div>
+              </div>
+              <div class="flex justify-end">
+                <a
+                  class="inline-flex items-center justify-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50"
+                  href="https://clinicvoll.netlify.app"
+                >
+                  Ver Projecto
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+            <div class="flex flex-col space-y-1.5 p-6">
+              <div class="relative group">
+                <img src="../assets/biblioteca.png" alt="Project3" class="rounded-t-md" style="aspect-ratio: 400 / 225; object-fit: cover" />
+                <div
+                  class="absolute inset-0 rounded bg-blue-300 bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                >
+                  <p class="text-blue-950 text-center font-bold p-4">Muy pronto...</p>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="flex flex-col space-y-1.5 p-6">
+              <img src="../assets/portafolio.png" alt="Project 3" class="rounded-t-md" style="aspect-ratio: 400 / 225; object-fit: cover" />
+            </div> -->
+            <div class="p-4">
+              <h3 class="text-xl font-bold mb-2">Literatura Challenge Alura</h3>
+              <p class="text-gray-600 mb-4">Puedes buscar y leer diferentes literaturas de muchos autores como Biblioteca Online.</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  Angular
+                </div>
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  RxJS
+                </div>
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  SCSS
+                </div>
+              </div>
+              <div class="flex justify-end">
+                <button
+                  disabled
+                  class="inline-flex items-center justify-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50"
+                  type="button"
+                >
+                  Ver Projecto
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+            <div class="flex flex-col space-y-1.5 p-6">
+              <div class="relative group">
+                <img
+                  src="../assets/covertidordmonedas.png"
+                  alt="Project3"
+                  class="rounded-t-md"
+                  style="aspect-ratio: 400 / 225; object-fit: cover"
+                />
+                <div
+                  class="absolute inset-0 rounded bg-blue-300 bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                >
+                  <p class="text-blue-950 text-center font-bold p-4">Muy pronto...</p>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="flex flex-col space-y-1.5 p-6">
+              <img src="../assets/portafolio.png" alt="Project 3" class="rounded-t-md" style="aspect-ratio: 400 / 225; object-fit: cover" />
+            </div> -->
+            <div class="p-4">
+              <h3 class="text-xl font-bold mb-2">Convertidor de Devisas</h3>
+              <p class="text-gray-600 mb-4">Convierte cualquier moneda equivalente a otra de otro pais.</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  Thymeleaf
+                </div>
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  Java
+                </div>
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  Spring Boot
+                </div>
+              </div>
+              <div class="flex justify-end">
+                <button
+                  disabled
+                  class="inline-flex items-center justify-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50"
+                >
+                  Ver Projecto
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+            <!-- <div class="flex flex-col space-y-1.5 p-6">
+              <div class="relative group">
+                <img src="../assets/encriptador.png" alt="Project3" class="rounded-t-md" style="aspect-ratio: 400 / 225; object-fit: cover" />
+                <div
+                  class="absolute inset-0 rounded bg-blue-400 bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                >
+                  <p class="text-white text-center p-4">Muy pronto...</p>
+                </div>
+              </div>
+            </div> -->
+            <div class="flex flex-col space-y-1.5 p-6">
+              <img src="../assets/encriptador.png" alt="Project 3" class="rounded-t-md" style="aspect-ratio: 400 / 225; object-fit: cover" />
+            </div>
+            <div class="p-4">
+              <h3 class="text-xl font-bold mb-2">Encriptador y Desecriptador de Texto</h3>
+              <p class="text-gray-600 mb-4">Puedes Encriptar texto y Desecriptarlo.</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  HTML
+                </div>
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  CSS
+                </div>
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  Javascript
+                </div>
+              </div>
+              <div class="flex justify-end">
+                <a
+                  class="inline-flex items-center justify-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50"
+                  href="https://alonsorodriv.github.io/Encriptador_Alura/"
+                >
+                  Ver Projecto
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <hr />
+      <section id="backend" class="mb-12">
+        <h2 class="text-2xl font-bold mb-4" style="margin-top: revert">Back-end Proyectos</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+            <div class="flex flex-col space-y-1.5 p-6">
+              <img src="../assets/api_foro.png" alt="Project1_backend" class="rounded-t-md" style="aspect-ratio: 400 / 225; object-fit: cover" />
+            </div>
+            <div class="p-4">
+              <h3 class="text-xl font-bold mb-2">Backend Forum Alura Challenge</h3>
+              <p class="text-gray-600 mb-4">Usando la Documentacion de Swagger API puedes probar la functional de las consultas del forum</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  Java
+                </div>
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  Spring Boot
+                </div>
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  PostgreSQL
+                </div>
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  Spring Security
+                </div>
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  JWT
+                </div>
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  Flyway
+                </div>
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  CI
+                </div>
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  EC2
+                </div>
+              </div>
+              <div class="flex justify-end">
+                <a
+                  class="inline-flex items-center justify-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50"
+                  href="http://ec2-18-219-234-115.us-east-2.compute.amazonaws.com:8080/swagger-ui/index.html#"
+                >
+                  Ver Projecto
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+            <div class="flex flex-col space-y-1.5 p-6">
+              <img
+                src="../assets/api_clinic.png"
+                alt="Project2_backend"
+                class="rounded-t-md"
+                style="aspect-ratio: 400 / 225; object-fit: cover"
+              />
+            </div>
+            <div class="p-4">
+              <h3 class="text-xl font-bold mb-2">Backend Voll Clinic Alura Challenge</h3>
+              <p class="text-gray-600 mb-4">Prueba los endpoint con Swagger API de Voll Clinic.</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  Java
+                </div>
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  PostgreSQL
+                </div>
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  Spring Boot
+                </div>
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  Spring Security
+                </div>
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  JWT
+                </div>
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  CI
+                </div>
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                >
+                  EC2
+                </div>
+              </div>
+              <div class="flex justify-end">
+                <a
+                  class="inline-flex items-center justify-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50"
+                  href="http://ec2-3-135-231-33.us-east-2.compute.amazonaws.com:8080/swagger-ui/index.html#/"
+                >
+                  Ver Projecto
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
+            <div class="flex flex-col space-y-1.5 p-6">
+              <img src="../assets/fotoPrueba.png" alt="Project 6" class="rounded-t-md" style="aspect-ratio: 400 / 225; object-fit: cover" />
+            </div>
+            <div class="p-4">
+              <h3 class="text-xl font-bold mb-2">Project 6</h3>
+              <p class="text-gray-600 mb-4">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget risus in sem finibus vulputate.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                  data-v0-t="badge"
+                >
+                  Python
+                </div>
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                  data-v0-t="badge"
+                >
+                  Django
+                </div>
+                <div
+                  class="inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                  data-v0-t="badge"
+                >
+                  PostgreSQL
+                </div>
+              </div>
+              <div class="flex justify-end">
+                <a
+                  class="inline-flex items-center justify-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
+                  href="#"
+                >
+                  View Project
+                </a>
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </section>
+      <hr />
+      <section id="about" class="mb-12">
+        <h2 class="text-2xl font-bold mb-4" style="margin-top: revert">Sobre Mi</h2>
+        <div class="block grid-cols-1 md:grid-cols-2 gap-6" style="text-align: -webkit-center">
+          <div>
+            <img
+              src="../assets/foto.jpg"
+              width="200"
+              height="200"
+              alt="About"
+              class="rounded-full"
+              style="aspect-ratio: 400/400; object-fit: cover"
+            />
+          </div>
+          <div class="space-y-4 content-center w-2/4">
+            <p class="pt-2">
+              Hola, Soy un Desarrollador Full-Stack-Junior apasionado por crear aplicaciones web hermosas y funcionales. tengo experiencia
+              trabajando con una variedad de tecnologías, incluidas Vue.js, Angular y más.
+            </p>
+            <p data-id="105">
+              En mi tiempo libre, disfruto aprendiendo sobre nuevas tecnologías y experimentando con diferentes frameworks y bibliotecas. siempre
+              estoy esforzándome por mejorar mis habilidades y mantenerme actualizado con las últimas tendencias de la industria.
+            </p>
+            <div class="flex items-center justify-center space-x-2"></div>
+          </div>
+        </div>
+      </section>
+      <!-- <section id="about" class="mb-12" data-id="98">
+        <h2 class="text-2xl font-bold mb-4" data-id="99">About Me</h2>
+        <div class="block grid-cols-1 md:grid-cols-2 gap-6" data-id="100" style="text-align: -webkit-center">
+          <div data-id="101">
+            <img
+              data-id="105"
+              src="../assets/foto.jpg"
+              width="200"
+              height="200"
+              alt="About"
+              class="card-img-top rounded-full"
+              style="aspect-ratio: 400 / 400; object-fit: cover"
+            />
+          </div>
+          <div class="space-y-4 content-center" data-id="103">
+            <p class="pt-2">
+              Hi, I'm a full-stack developer with a passion for creating beautiful and functional web applications. I have experience working
+              with a variety of technologies, including React, Vue.js, Angular, Node.js, and more.
+            </p>
+            <p data-id="105">
+              In my free time, I enjoy learning about new technologies and experimenting with different frameworks and libraries. I'm always
+              striving to improve my skills and stay up-to-date with the latest industry trends.
+            </p>
+          </div>
+        </div>
+      </section> -->
+    </main>
+    <footer class="bg-gray-900 text-white py-4 px-6 md:px-8">
+      <div class="container mx-auto flex justify-between items-center">
+        <p class="text-sm">© 2024 Jonh Rodriguez</p>
+        <div class="flex space-x-4">
+          <a class="hover:text-gray-400" href="https://www.linkedin.com/in/juan-alonso-rodriguez-rivera-0b88291aa">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="h-5 w-5"
+            >
+              <path
+                d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
+              ></path>
+              <path d="M9 18c-4.51 2-5-2-7-2"></path>
+            </svg>
+            <span class="sr-only">GitHub</span>
+          </a>
+          <a class="hover:text-gray-400" href="https://www.linkedin.com/in/juan-alonso-rodriguez-rivera-0b88291aa">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="h-5 w-5"
+            >
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect width="4" height="12" x="2" y="9"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+            <span class="sr-only">LinkedIn</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const isMenuOpen = ref(false);
+
+const toggleMenu = () => {
+  console.log('cambio:', isMenuOpen.value);
+  isMenuOpen.value = !isMenuOpen.value;
+};
+</script>
+
+<style scoped></style>
