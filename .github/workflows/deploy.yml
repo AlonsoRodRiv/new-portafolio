@@ -32,4 +32,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          npm run vue-deploy-gh-pages -- deploy --repo=https://github.com/AlonsoRodRiv/new-portafolio.git --name="AlonsoRodRiv" --email="rr14112@ues.edu.sv" --base-href=/new-portafolio/
+          npm run vue-deploy-gh-pages -- --repo=https://github.com/AlonsoRodRiv/new-portafolio.git --branch=gh-pages --message="Deploy" --base=/new-portafolio/
