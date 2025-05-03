@@ -28,29 +28,16 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy to GitHub Pages
-        run: |
-          git config --global user.name "AlonsoRodRiv"
-          git config --global user.email "rr14112@ues.edu.sv"
-          npm run deploy
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-
       # - name: Deploy to GitHub Pages (funcionando)
       #   uses: peaceiris/actions-gh-pages@v3
       #   with:
       #     github_token: ${{ secrets.GH_TOKEN }}
       #     publish_dir: ./dist
 
-      # - name: Deploy to Github pages
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-      #   run: npm run vue-deploy-gh-pages
+      - name: Set git config
+        run: |
+          git config --global user.name "AlonsoRodRiv"
+          git config --global user.email "rr14112@ues.edu.sv"
 
-      # - name: Set git config
-      #   run: |
-      #     git config --global user.name "AlonsoRodRiv"
-      #     git config --global user.email "rr14112@ues.edu.sv"
-
-      # - name: Deploy to GitHub Pages
-      #   run: npm run vue-deploy-gh-pages -- --repo=https://${{ secrets.GH_TOKEN }}@github.com/AlonsoRodRiv/new-portafolio.git --branch=gh-pages --message="Deploy"
+      - name: Deploy to GitHub Pages
+        run: npm run vue-deploy-gh-pages -- --repo=https://${{ secrets.GH_TOKEN }}@github.com/AlonsoRodRiv/new-portafolio.git --branch=gh-pages --message="Deploy"
