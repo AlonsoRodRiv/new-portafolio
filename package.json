@@ -6,7 +6,8 @@
     "vue-deploy-gh-pages": "vue-cli-service build && gh-pages -d dist",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "deploy": "gh-pages -d dist -r https://github.com/AlonsoRodRiv/new-portafolio.git -u \"AlonsoRodRiv <rr14112@ues.edu.sv>\" -b gh-pages"
   },
   "dependencies": {
     "core-js": "^3.8.3",

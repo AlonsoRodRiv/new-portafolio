@@ -29,10 +29,18 @@ jobs:
         run: npm run build
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GH_TOKEN }}
-          publish_dir: ./dist
+        run: |
+          git config --global user.name "AlonsoRodRiv"
+          git config --global user.email "rr14112@ues.edu.sv"
+          npm run deploy
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      # - name: Deploy to GitHub Pages (funcionando)
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.GH_TOKEN }}
+      #     publish_dir: ./dist
 
       # - name: Deploy to Github pages
       #   env:
