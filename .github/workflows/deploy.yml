@@ -34,4 +34,4 @@ jobs:
           git config --global user.email "rr14112@ues.edu.sv"
 
       - name: Deploy to GitHub Pages
-        run: npm run vue-deploy-gh-pages -- --repo=https://github.com/AlonsoRodRiv/new-portafolio.git --branch=gh-pages --message="Deploy"
+        run: npm run vue-deploy-gh-pages -- --repo=https://${{ secrets.GH_TOKEN }}@github.com/AlonsoRodRiv/new-portafolio.git --branch=gh-pages --message="Deploy"
