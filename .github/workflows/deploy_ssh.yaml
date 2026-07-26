@@ -1,4 +1,4 @@
-name: SSH Connection Test
+name: Deploy to Server
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  ssh-test:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -18,5 +18,11 @@ jobs:
           key: ${{ secrets.PRIVATE_SSH_KEY }}
           known_hosts: ${{ secrets.KNOWN_HOSTS }}
 
-      - name: Test SSH connection
-        run: ssh -o StrictHostKeyChecking=no ubuntu@0.tcp.ngrok.io -p 11827 "echo Connection successful"
+      - name: Copy Docker files to server
+        run: |
+          scp -o StrictHostKeyChecking=no -P 11827 Dockerfile docker-compose.yml ubuntu@0.tcp.ngrok.io:~/portfolio/
+          scp -o StrictHostKeyChecking=no -P 11827 -r ./* ubuntu@0.tcp.ngrok.io:~/portfolio/
+
+      - name: Deploy with Docker
+        run: |
+          ssh -o StrictHostKeyChecking=no ubuntu@0.tcp.ngrok.io -p 11827 "cd ~/portfolio && docker-compose down && docker-compose up -d --build"
