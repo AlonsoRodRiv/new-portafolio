@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "vue-deploy-gh-pages": "vue-cli-service build && gh-pages -d dist",
+    "vue-deploy-gh-pages": "npm run build:gh-pages && gh-pages -d dist",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build:gh-pages": "cross-env DEPLOY_TARGET=gh-pages vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -25,6 +26,7 @@
     "@vue/cli-service": "~5.0.0",
     "@vue/eslint-config-typescript": "^9.1.0",
     "autoprefixer": "^10.4.19",
+    "cross-env": "^10.1.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
