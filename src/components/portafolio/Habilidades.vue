@@ -1,55 +1,22 @@
 <template>
-  <section id="skills" class="mb-12">
-    <div class="flex items-center mb-6">
-      <i class="fas fa-tools text-2xl text-blue-600 mr-3"></i>
-      <h2 class="text-3xl font-bold text-gray-800">Habilidades</h2>
-    </div>
+  <section id="skills" class="mb-16">
+    <h2 class="section-title">Habilidades</h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <!-- Frontend Skills -->
-      <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-        <h3 class="text-xl font-bold mb-4 flex items-center">
-          <i class="fas fa-laptop-code text-blue-500 mr-2"></i>
-          Frontend
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-14 gap-y-10">
+      <div v-for="grupo in grupos" :key="grupo.titulo">
+        <h3 class="font-mono-label text-xs uppercase tracking-[0.14em] text-subtle mb-4">
+          {{ grupo.titulo }}
         </h3>
         <div class="space-y-4">
-          <div v-for="(skill, index) in frontendSkills" :key="index">
-            <div class="flex justify-between mb-1">
-              <span class="font-semibold flex items-center">
-                <i :class="skill.icon + ' ' + skill.iconColor + ' mr-2'"></i>
-                {{ skill.name }}
-              </span>
-              <span>{{ skill.level }}%</span>
+          <div v-for="skill in grupo.skills" :key="skill.name">
+            <div class="flex justify-between items-baseline mb-1">
+              <span class="text-sm font-semibold text-ink">{{ skill.name }}</span>
+              <span class="font-mono-label text-[0.7rem] text-subtle">{{ skill.nivel }}</span>
             </div>
-            <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="h-px bg-hairline relative">
               <div
-                class="bg-blue-600 h-2.5 rounded-full"
-                :style="{ width: skill.level + '%' }"
-              ></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Backend Skills -->
-      <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-        <h3 class="text-xl font-bold mb-4 flex items-center">
-          <i class="fas fa-server text-blue-500 mr-2"></i>
-          Backend
-        </h3>
-        <div class="space-y-4">
-          <div v-for="(skill, index) in backendSkills" :key="index">
-            <div class="flex justify-between mb-1">
-              <span class="font-semibold flex items-center">
-                <i :class="skill.icon + ' ' + skill.iconColor + ' mr-2'"></i>
-                {{ skill.name }}
-              </span>
-              <span>{{ skill.level }}%</span>
-            </div>
-            <div class="w-full bg-gray-200 rounded-full h-2.5">
-              <div
-                class="bg-blue-600 h-2.5 rounded-full"
-                :style="{ width: skill.level + '%' }"
+                class="absolute inset-y-0 left-0 bg-indigo2 h-[3px] -top-[1px]"
+                :style="{ width: skill.pct + '%' }"
               ></div>
             </div>
           </div>
@@ -62,61 +29,49 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-// Definiendo el tipo para habilidades
 interface Skill {
   name: string;
-  level: number;
-  icon: string;
-  iconColor: string;
+  nivel: string;
+  pct: number;
 }
 
-// Habilidades de Frontend
-const frontendSkills = ref<Skill[]>([
-  { name: 'HTML/CSS', level: 90, icon: 'fab fa-html5', iconColor: 'text-orange-500' },
-  {
-    name: 'JavaScript/TypeScript',
-    level: 85,
-    icon: 'fab fa-js-square',
-    iconColor: 'text-yellow-500',
-  },
-  { name: 'Vue.js', level: 80, icon: 'fab fa-vuejs', iconColor: 'text-green-500' },
-  { name: 'Angular', level: 75, icon: 'fab fa-angular', iconColor: 'text-red-500' },
-  { name: 'Tailwind CSS', level: 90, icon: 'fab fa-css3-alt', iconColor: 'text-blue-400' },
-]);
+interface Grupo {
+  titulo: string;
+  skills: Skill[];
+}
 
-// Habilidades de Backend
-const backendSkills = ref<Skill[]>([
-  { name: 'Java', level: 85, icon: 'fab fa-java', iconColor: 'text-red-600' },
-  { name: 'Spring Boot', level: 80, icon: 'fas fa-leaf', iconColor: 'text-green-600' },
+const grupos = ref<Grupo[]>([
   {
-    name: 'Bases de Datos (SQL)',
-    level: 75,
-    icon: 'fas fa-database',
-    iconColor: 'text-blue-600',
+    titulo: 'Backend',
+    skills: [
+      { name: 'Java (8/11, practicando 17)', nivel: 'Profesional', pct: 85 },
+      { name: 'Spring Boot / REST APIs / Maven', nivel: 'Intermedio', pct: 80 },
+      { name: 'SQL (PostgreSQL, MySQL, Oracle)', nivel: 'Intermedio', pct: 70 },
+      { name: 'SOAP & JMS/MQ', nivel: 'Básico', pct: 55 },
+      { name: 'AWS S3 & GitHub Actions CI/CD', nivel: 'Intermedio', pct: 65 },
+      { name: 'Docker', nivel: 'Básico', pct: 50 },
+    ],
   },
-  { name: 'RESTful APIs', level: 85, icon: 'fas fa-cloud', iconColor: 'text-cyan-500' },
-  { name: 'Cloud (AWS)', level: 70, icon: 'fab fa-aws', iconColor: 'text-orange-400' },
+  {
+    titulo: 'Frontend',
+    skills: [
+      { name: 'HTML5 / CSS3', nivel: 'Intermedio', pct: 75 },
+      { name: 'JavaScript / TypeScript', nivel: 'Intermedio', pct: 65 },
+      { name: 'Vue.js', nivel: 'Básico', pct: 55 },
+      { name: 'Angular', nivel: 'Básico', pct: 55 },
+      { name: 'NestJS', nivel: 'Básico', pct: 40 },
+    ],
+  },
 ]);
 </script>
 
 <style scoped>
-/* Animaciones para hover */
-.rounded-lg {
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
-}
-
-.rounded-lg:hover {
-  transform: translateY(-3px);
-}
-
-/* Animaciones para íconos */
-.fas,
-.fab {
-  transition: transform 0.2s ease;
-}
-
-.font-semibold:hover .fas,
-.font-semibold:hover .fab {
-  transform: scale(1.2);
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: var(--ink);
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: 0.9rem;
+  margin-bottom: 2.2rem;
 }
 </style>

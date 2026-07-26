@@ -1,57 +1,42 @@
 <template>
-  <section id="frontend" class="mb-12">
-    <div class="flex items-center mb-6">
-      <i class="fas fa-laptop-code text-2xl text-blue-600 mr-3"></i>
-      <h2 class="text-3xl font-bold text-gray-800">Proyectos Front-end</h2>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div
-        v-for="(proyecto, index) in proyectos"
-        :key="index"
-        class="rounded-lg border bg-white text-gray-800 shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden"
-      >
-        <div class="relative overflow-hidden group">
+  <section id="frontend" class="mb-16">
+    <h2 class="section-title">Proyectos Front-end</h2>
+    <p class="font-mono-label text-xs uppercase tracking-[0.14em] text-subtle -mt-4 mb-8">
+      Proyectos personales
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      <article v-for="(proyecto, index) in proyectos" :key="index" class="group">
+        <a
+          :href="proyecto.enlace"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="block border border-hairline rounded-sm overflow-hidden mb-4"
+        >
           <img
             :src="proyecto.imagen"
             :alt="proyecto.titulo"
-            class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+            class="w-full h-44 object-cover object-top grayscale-[35%] group-hover:grayscale-0 transition-all duration-500"
           />
-          <div
-            class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4"
-          >
-            <h3 class="text-white font-bold text-lg">
-              {{ proyecto.titulo }}
-            </h3>
-          </div>
-        </div>
-        <div class="p-5">
-          <h3 class="text-xl font-bold mb-2">
-            {{ proyecto.titulo }}
-          </h3>
-          <p class="text-gray-600 mb-4">
-            {{ proyecto.descripcion }}
-          </p>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <div
-              v-for="(tech, techIndex) in proyecto.tecnologias"
-              :key="techIndex"
-              class="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-blue-800"
-            >
-              <i :class="tech.icon + ' mr-1'"></i> {{ tech.nombre }}
-            </div>
-          </div>
-          <div class="flex justify-end">
-            <a
-              class="inline-flex items-center justify-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-              :href="proyecto.enlace"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i class="fas fa-external-link-alt mr-2"></i> Ver Proyecto
-            </a>
-          </div>
-        </div>
-      </div>
+        </a>
+        <h3 class="font-serif-display text-xl text-ink mb-1">
+          {{ proyecto.titulo }}
+        </h3>
+        <p class="text-subtle text-sm leading-relaxed mb-2">
+          {{ proyecto.descripcion }}
+        </p>
+        <p class="font-mono-label text-[0.7rem] uppercase tracking-[0.08em] text-indigo2 mb-3">
+          {{ proyecto.tecnologias.join(' · ') }}
+        </p>
+        <a
+          :href="proyecto.enlace"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-sm font-semibold text-ink border-b border-ink pb-0.5 hover:text-indigo2 hover:border-indigo2 transition-colors"
+        >
+          Ver proyecto →
+        </a>
+      </article>
     </div>
   </section>
 </template>
@@ -59,80 +44,46 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-// Definiendo el tipo para las tecnologías
-interface Tecnologia {
-  nombre: string;
-  icon: string;
-}
-
-// Definiendo el tipo para los proyectos
 interface Proyecto {
   titulo: string;
   descripcion: string;
   imagen: string;
-  tecnologias: Tecnologia[];
+  tecnologias: string[];
   enlace: string;
 }
 
-// Lista de proyectos frontend
 const proyectos = ref<Proyecto[]>([
   {
     titulo: 'Forum Challenge Alura',
-    descripcion: 'Crea tópicos de diferentes cursos y responde a los tópicos de otros usuarios',
+    descripcion: 'Crea tópicos de diferentes cursos y responde a los tópicos de otros usuarios.',
     imagen: require('@/assets/frontend_foro.png'),
-    tecnologias: [
-      { nombre: 'Vue.js', icon: 'fab fa-vuejs' },
-      { nombre: 'TypeScript', icon: 'fab fa-js-square' },
-      { nombre: 'Tailwind CSS', icon: 'fab fa-css3-alt' },
-      { nombre: 'Vuex', icon: 'fas fa-database' },
-    ],
+    tecnologias: ['Vue.js', 'TypeScript', 'Tailwind CSS', 'Vuex'],
     enlace: 'https://forumcourses.netlify.app',
   },
   {
     titulo: 'Voll Clinic Frontend',
-    descripcion: 'Interfaz de usuario para la aplicación de gestión de clínica médica',
+    descripcion: 'Interfaz de usuario para la aplicación de gestión de clínica médica.',
     imagen: require('@/assets/frontend_clinic.png'),
-    tecnologias: [
-      { nombre: 'React', icon: 'fab fa-react' },
-      { nombre: 'TypeScript', icon: 'fab fa-js-square' },
-      { nombre: 'Material UI', icon: 'fab fa-css3-alt' },
-      { nombre: 'Redux', icon: 'fas fa-database' },
-    ],
+    tecnologias: ['React', 'TypeScript', 'Material UI', 'Redux'],
     enlace: 'https://vollclinic.netlify.app',
   },
   {
     titulo: 'Encriptador de Texto',
-    descripcion: 'Aplicación web para cifrar y descifrar mensajes de texto',
+    descripcion: 'Aplicación web para cifrar y descifrar mensajes de texto.',
     imagen: require('@/assets/encriptador.png'),
-    tecnologias: [
-      { nombre: 'JavaScript', icon: 'fab fa-js-square' },
-      { nombre: 'HTML5', icon: 'fab fa-html5' },
-      { nombre: 'CSS3', icon: 'fab fa-css3-alt' },
-    ],
+    tecnologias: ['JavaScript', 'HTML5', 'CSS3'],
     enlace: 'https://encriptador.netlify.app',
   },
 ]);
 </script>
 
 <style scoped>
-/* Animaciones para hover en las tarjetas */
-.rounded-lg {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.rounded-lg:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-}
-
-/* Animaciones para íconos */
-.fas,
-.fab {
-  transition: transform 0.2s ease;
-}
-
-a:hover .fas,
-a:hover .fab {
-  transform: scale(1.2);
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: var(--ink);
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: 0.9rem;
+  margin-bottom: 2.2rem;
 }
 </style>

@@ -1,41 +1,39 @@
 <template>
-  <section
-    class="mb-12 bg-gradient-to-r from-blue-900 to-gray-900 text-white rounded-lg shadow-xl overflow-hidden"
-  >
-    <div class="container mx-auto py-16 px-8 flex flex-col items-center text-center">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">Desarrollador Full-Stack</h1>
-      <p class="text-xl mb-8 max-w-2xl">
-        Creando soluciones web innovadoras y funcionales con tecnologías modernas
-      </p>
-      <div class="flex flex-wrap gap-4 justify-center">
-        <a
-          href="#contact"
-          class="inline-flex items-center justify-center px-6 py-3 bg-blue-600 hover:bg-blue-700 transition-colors duration-300 rounded-md text-white font-medium shadow-lg"
-        >
-          <i class="fas fa-envelope mr-2"></i> Contáctame
-        </a>
-        <!-- <a
-          href="#portfolio"
-          class="inline-flex items-center justify-center px-6 py-3 bg-gray-700 hover:bg-gray-800 transition-colors duration-300 rounded-md text-white font-medium border border-gray-600"
-        >
-          <i class="fas fa-briefcase mr-2"></i> Ver Portafolio
-        </a> -->
-      </div>
+  <section class="mb-16 pt-10 md:pt-16">
+    <p class="font-mono-label text-xs uppercase tracking-[0.18em] text-subtle mb-6">
+      Perfil profesional · San Salvador, El Salvador
+    </p>
+    <h1 class="font-serif-display text-5xl md:text-7xl leading-[0.98] tracking-tight text-ink mb-3">
+      Juan Alonso<br />Rodríguez
+    </h1>
+    <p
+      class="font-serif-display italic text-2xl md:text-3xl text-indigo2 inline-block border-b-2 border-indigo2 pb-1 mb-8"
+    >
+      Java Backend Developer
+    </p>
+    <p class="text-subtle text-lg leading-relaxed max-w-[54ch] mb-10">
+      Construyo y mantengo los sistemas backend de la banca salvadoreña: procesamiento por lotes,
+      facturación electrónica y APIs REST sobre Spring Boot, con SOAP y JMS/MQ para las
+      integraciones que nadie ve pero todos necesitan.
+    </p>
+    <div class="flex flex-wrap items-center gap-8">
+      <a
+        href="#contact"
+        class="text-indigo2 font-semibold border-b border-indigo2 pb-0.5 hover:opacity-75 transition-opacity"
+      >
+        Contáctame →
+      </a>
+      <a
+        :href="cvUrl"
+        download
+        class="text-ink font-semibold border-b border-ink pb-0.5 hover:opacity-75 transition-opacity"
+      >
+        Descargar CV
+      </a>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-// No se requiere lógica específica para este componente
+const cvUrl = `${process.env.BASE_URL}cv/CV-Juan-Alonso-Rodriguez.pdf`;
 </script>
-
-<style scoped>
-/* Animaciones para íconos en hover */
-.fas {
-  transition: transform 0.2s ease;
-}
-
-a:hover .fas {
-  transform: scale(1.2);
-}
-</style>

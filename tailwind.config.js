@@ -1,16 +1,21 @@
 import { fontFamily } from 'tailwindcss/defaultTheme';
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  purge: [],
   purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
-        heading: ['var(--font-heading)', ...fontFamily.sans],
+        heading: ['var(--font-heading)', 'Georgia', 'serif'],
         body: ['var(--font-body)', ...fontFamily.sans],
       },
       colors: {
+        paper: 'var(--paper)',
+        surface: 'var(--surface)',
+        ink: 'var(--ink)',
+        subtle: 'var(--subtle)',
+        hairline: 'var(--hairline)',
+        indigo2: 'var(--indigo)',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',

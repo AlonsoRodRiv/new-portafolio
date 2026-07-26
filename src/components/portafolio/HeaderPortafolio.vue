@@ -1,62 +1,51 @@
 <template>
   <header
-    class="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-4 px-6 md:px-8 fixed top-0 left-0 right-0 z-50 shadow-lg"
+    class="bg-paper/95 backdrop-blur border-b border-hairline fixed top-0 left-0 right-0 z-50"
   >
-    <div class="container mx-auto flex justify-between items-center">
-      <h1 class="text-2xl font-bold flex items-center">
-        <i class="fas fa-code mr-2 text-blue-400"></i>
-        Jonh Rodriguez
-      </h1>
-      <nav
-        :class="[
-          'md:flex md:space-x-6 md:items-center',
-          {
-            hidden: !isMenuOpen,
-            'absolute top-full left-0 right-0 bg-gray-800 p-4 shadow-lg': isMenuOpen,
-          },
-          'md:relative md:bg-transparent md:p-0',
-        ]"
-      >
-        <a
-          href="#frontend"
-          class="block py-2 text-gray-300 hover:text-blue-400 transition-colors duration-300 md:inline-block md:py-0"
+    <div class="container mx-auto flex justify-between items-center py-4 px-6 md:px-8">
+      <a href="#top" class="font-serif-display text-xl text-ink tracking-tight">
+        Juan Alonso Rodríguez
+      </a>
+
+      <div class="flex items-center gap-2">
+        <nav
+          :class="[
+            'md:flex md:gap-6 md:items-center',
+            {
+              hidden: !isMenuOpen,
+              'absolute top-full left-0 right-0 bg-paper border-b border-hairline p-6 space-y-3 md:space-y-0':
+                isMenuOpen,
+            },
+            'md:relative md:border-0 md:p-0',
+          ]"
         >
-          <i class="fas fa-laptop-code mr-1"></i> Front-end
-        </a>
-        <a
-          href="#backend"
-          class="block py-2 text-gray-300 hover:text-blue-400 transition-colors duration-300 md:inline-block md:py-0"
+          <a
+            v-for="link in links"
+            :key="link.href"
+            :href="link.href"
+            class="nav-link"
+            @click="closeMenu"
+          >
+            {{ link.label }}
+          </a>
+        </nav>
+
+        <button
+          class="w-9 h-9 flex items-center justify-center border border-hairline rounded-sm text-subtle hover:text-ink hover:border-subtle transition-colors"
+          :aria-label="isDark ? 'Cambiar a modo día' : 'Cambiar a modo noche'"
+          @click="toggleTheme"
         >
-          <i class="fas fa-server mr-1"></i> Back-end
-        </a>
-        <a
-          href="#skills"
-          class="block py-2 text-gray-300 hover:text-blue-400 transition-colors duration-300 md:inline-block md:py-0"
+          <i :class="isDark ? 'fas fa-sun' : 'fas fa-moon'"></i>
+        </button>
+
+        <button
+          class="w-9 h-9 flex items-center justify-center border border-hairline rounded-sm text-subtle hover:text-ink md:hidden"
+          aria-label="Menú"
+          @click="toggleMenu"
         >
-          <i class="fas fa-tools mr-1"></i> Habilidades
-        </a>
-        <a
-          href="#about"
-          class="block py-2 text-gray-300 hover:text-blue-400 transition-colors duration-300 md:inline-block md:py-0"
-        >
-          <i class="fas fa-user mr-1"></i> Sobre Mi
-        </a>
-        <a
-          href="#contact"
-          class="block py-2 text-gray-300 hover:text-blue-400 transition-colors duration-300 md:inline-block md:py-0"
-        >
-          <i class="fas fa-envelope mr-1"></i> Contacto
-        </a>
-      </nav>
-      <button
-        class="inline-flex items-center justify-center text-sm border border-gray-600 bg-gray-800 hover:bg-gray-700 transition-colors duration-300 h-9 rounded-md px-3 md:hidden"
-        aria-label="Menu"
-        @click="toggleMenu"
-      >
-        <i v-if="!isMenuOpen" class="fas fa-bars text-white text-xl"></i>
-        <i v-else class="fas fa-times text-white text-xl"></i>
-        <span class="sr-only">{{ isMenuOpen ? 'Cerrar menú' : 'Abrir menú' }}</span>
-      </button>
+          <i :class="isMenuOpen ? 'fas fa-times' : 'fas fa-bars'"></i>
+        </button>
+      </div>
     </div>
   </header>
 </template>
@@ -64,22 +53,43 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
+const links = [
+  { href: '#about', label: 'Sobre Mí' },
+  { href: '#experience', label: 'Experiencia' },
+  { href: '#skills', label: 'Habilidades' },
+  { href: '#backend', label: 'Back-end' },
+  { href: '#frontend', label: 'Front-end' },
+  { href: '#contact', label: 'Contacto' },
+];
+
 const isMenuOpen = ref(false);
+const isDark = ref(document.documentElement.classList.contains('dark'));
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
 };
+const closeMenu = () => {
+  isMenuOpen.value = false;
+};
+const toggleTheme = () => {
+  isDark.value = !isDark.value;
+  document.documentElement.classList.toggle('dark', isDark.value);
+  localStorage.setItem('theme', isDark.value ? 'dark' : 'light');
+};
 </script>
 
 <style scoped>
-/* Animaciones para íconos en hover */
-.fas,
-.fab {
-  transition: transform 0.2s ease;
+.nav-link {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--subtle);
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
-
-a:hover .fas,
-a:hover .fab {
-  transform: scale(1.2);
+.nav-link:hover {
+  color: var(--indigo);
+  border-bottom-color: var(--indigo);
 }
 </style>
